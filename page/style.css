@@ -17,3 +17,29 @@
 .navbar {
 	border-radius: 0.4rem;
 }
+
+.button {
+	border-radius: 0.5rem;
+	background-color: var(--bs-primary);
+	padding: 0.5rem;
+}
+
+.button:hover {
+	cursor: pointer;
+}
+
+.card-header h5 {
+	margin-top: 0.5rem
+}
+
+.card-footer {
+	font-size: 10pt;
+}
+
+.card:hover {
+	background-color: #171b20;
+}
+
+textarea {
+	height: 100%;
+}
