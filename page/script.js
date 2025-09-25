@@ -36,18 +36,26 @@ function showHome() {
 	// Entries array is built in alphabetical order so oldest entries will be first, reverse array so newest comes first
 	entries.reverse();
 	
-
 	let mainHtml = `
 		<div class="container">
 			<div class="row">
-				<div class="col-md-4">
 	`;
 
-	mainHtml += `<h1>Test</h1>`;
-
+	for (const entry of entries) {
+		mainHtml += `
+			<div class="col-md-4">
+				<div class="card margin-top hover-pointer">
+					<div class="card-header">
+						<h5>${entry.title}</h5>
+					</div>
+					<div class="card-body">${entry.content.replace(/<br>/g, " ").substring(0, 97)}...</div>
+					<div class="card-footer text-body-secondary">${entry.date}</div>
+				</div>
+			</div>
+		`
+	};
 
 	mainHtml += `
-				</div>
 			</div>
 		</div>
 	`;
