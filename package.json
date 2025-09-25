@@ -28,5 +28,8 @@
   },
   "devDependencies": {
     "electron": "^38.1.2"
+  },
+  "dependencies": {
+    "os": "^0.1.2"
   }
 }
