@@ -33,8 +33,8 @@ function showHome() {
 			};
 		};
 	};
-
-	console.log(entries);
+	// Entries array is built in alphabetical order so oldest entries will be first, reverse array so newest comes first
+	entries.reverse();
 	
 
 	let mainHtml = `
