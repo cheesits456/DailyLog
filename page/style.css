@@ -1,7 +1,4 @@
-.align-center {
-	text-align: center;
-}
-
+/* Helper classes */
 .hover-default:hover {
 	cursor: default;
 }
@@ -12,6 +9,7 @@
 
 
 
+/* Main page layout stuff */
 .navbar {
 	border-radius: 0.4rem;
 }
