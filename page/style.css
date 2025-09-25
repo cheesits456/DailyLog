@@ -2,6 +2,16 @@
 	text-align: center;
 }
 
+.hover-default:hover {
+	cursor: default;
+}
+
+.hover-pointer:hover {
+	cursor: pointer;
+}
+
+
+
 .navbar {
 	border-radius: 0.4rem;
 }
