@@ -11,4 +11,4 @@ process.chdir(__dirname);
 const entryDirectory = path.join(os.homedir(), "Documents", "DailyLog");
 if (!fs.existsSync(entryDirectory)) fs.mkdir(entryDirectory, null, () => { });
 
-showMain();
+showHome();
