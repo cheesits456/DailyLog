@@ -13,18 +13,31 @@
 
 		<header>
 			<div class="container nav-container">
-				<nav class="navbar bg-body-tertiary">
+				<nav class="navbar navbar-expand-lg bg-body-tertiary">
 					<div class="container-fluid">
-						<a class="navbar-brand" href="#">
+						<a class="navbar-brand">
 							<img src="../icon/icon.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
 							DailyLog
 						</a>
-					</div>
-				</nav>
-			</div>
-		</header>
+						<div class="navbar-collapse" id="navbarSupportedContent">
+							<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+								<li class="nav-item">
+									<a id="nav-button-home" class="nav-link active hover-pointer" onclick="showHome()">Home</a>
+								</li>
+								<li class="nav-item">
+									<a id="nav-button-new" class="nav-link hover-pointer" onclick="showNew()">New</a>
+								</li>
+							</ul>
+							<form class="d-flex" role="search">
+								<input id="nav-input-search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+								<button id="nav-button-search" class="btn btn-outline-primary" type="submit">Search</button>
+							</form>
+						</div>
+					</nav>
+				</div>
+			</header>
 
-		<br>
+			<br>
 
 		<main id="main">
 			<div class="position-absolute top-50 start-50 translate-middle align-center">
