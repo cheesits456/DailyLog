@@ -22,6 +22,7 @@ function showHome() {
 
 	document.getElementById("nav-button-home").classList.add("active");
 
+	// Loop through all subdirectories of main entry directory to build an array of entries
 	let entries = [];
 	for (const year of fs.readdirSync(entryDirectory)) {
 		for (const month of fs.readdirSync(path.join(entryDirectory, year).replace(/\\/g, "\\\\"))) {
