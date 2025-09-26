@@ -111,21 +111,26 @@ function showNew() {
 		<div class="container margin-top">
 			<div class="row">
 				<div class="col-md-6">
-					<form>
-						<input id="entry-title" class="form-control" type="text" placeholder="Title">
-					</form>
+					<input id="entry-title" class="form-control" type="text" placeholder="Title">
 				</div>
-				<div class="col-md-2">
-					<input id="entry-date" class="form-control" type="date" placeholder="Optional">
-				</div>
-				<div class="col-md-2">
-					<input id="entry-time" class="form-control" type="time" placeholder="Optional">
+				<div class="col-md-4">
+					<div class="row">
+						<div class="col">
+							<input id="entry-date" class="form-control" type="date">
+						</div>
+						<div class="col">
+							<input id="entry-time" class="form-control" type="time">
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-text text-center">Optional, defaults to current date and time</div>
+					</div>
 				</div>
 				<div class="col-md-2">
 					<div class="button text-center" onclick="createNew()">Save</div>
 				</div>
 			</div>
-			<form action="#0">
+			<form>
 				<div class="grow-wrap">
 					<textarea id="entry-content" class="form-control margin-top" placeholder="Start typing here..."></textarea>
 				</div>
@@ -137,7 +142,6 @@ function showNew() {
 
 
 function createNew() {
-	const entryDate = new Date();
 	const ids = [
 		"entry-title",
 		"entry-content"
@@ -154,6 +158,10 @@ function createNew() {
 		};
 	};
 	if (skip) return;
+
+	const date = document.getElementById("entry-date").value;
+	const time = document.getElementById("entry-time").value;
+	const entryDate = date ? new Date(`${date} ${time}`) : new Date();
 
 	// Build date variables
 	const year = `${entryDate.getFullYear()}`;
