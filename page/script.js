@@ -35,20 +35,22 @@ function showHome() {
 	};
 	// Entries array is built in alphabetical order so oldest entries will be first, reverse array so newest comes first
 	entries.reverse();
+
 	
 	let mainHtml = `
-		<div class="container">
-			<div class="row">
+	<div class="container">
+	<div class="row">
 	`;
-
+	
 	for (const entry of entries) {
+		let substring = `${entry.content}`.replace(/<br>/g, " ").substring(0, 114);
 		mainHtml += `
 			<div class="col-md-4">
 				<div class="card margin-top hover-pointer">
 					<div class="card-header">
 						<h5>${entry.title}</h5>
 					</div>
-					<div class="card-body">${entry.content.replace(/<br>/g, " ").substring(0, 97)}...</div>
+					<div class="card-body">${substring}${entry.content.length > 114 ? " . . ." : ""}</div>
 					<div class="card-footer text-body-secondary">${entry.date}</div>
 				</div>
 			</div>
@@ -72,5 +74,25 @@ function showNew() {
 	
 	document.getElementById("nav-button-new").classList.add("active");
 
-	document.getElementById("main").innerHTML = "";
+	document.getElementById("main").innerHTML = `
+		<div class="container margin-top">
+			<div class="row">
+				<div class="col-md-10">
+					<form>
+						<input id="entry-title" class="form-control" type="text" placeholder="Title">
+					</form>
+				</div>
+				<div class="col-md-2">
+					<div class="button text-center">Save</div>
+				</div>
+			</div>
+			<form action="#0">
+				<div class="grow-wrap">
+					<textarea id="entry-content" class="form-control margin-top" placeholder="Start typing here..."
+						onInput="this.parentNode.dataset.replicatedValue = this.value"></textarea>
+				</div>
+			</form>
+		</div>
+	`;
+
 };
