@@ -16,6 +16,12 @@ showHome();
 
 
 
+function showEntry(date) {
+	console.log(date);
+}
+
+
+
 function showHome() {
 	page = "home";
 	document.getElementById("nav-button-new").classList.remove("active");
@@ -46,7 +52,7 @@ function showHome() {
 		let substring = `${entry.content}`.replace(/<br>/g, " ").substring(0, 114);
 		mainHtml += `
 			<div class="col-md-4">
-				<div class="card margin-top hover-pointer">
+				<div class="card margin-top hover-pointer" onclick="showEntry('${entry.path}')">
 					<div class="card-header">
 						<h5>${entry.title}</h5>
 					</div>
