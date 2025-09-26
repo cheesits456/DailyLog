@@ -110,13 +110,19 @@ function showNew() {
 	document.getElementById("main").innerHTML = `
 		<div class="container margin-top">
 			<div class="row">
-				<div class="col-md-10">
+				<div class="col-md-6">
 					<form>
 						<input id="entry-title" class="form-control" type="text" placeholder="Title">
 					</form>
 				</div>
 				<div class="col-md-2">
-					<div class="button text-center">Save</div>
+					<input id="entry-date" class="form-control" type="date" placeholder="Optional">
+				</div>
+				<div class="col-md-2">
+					<input id="entry-time" class="form-control" type="time" placeholder="Optional">
+				</div>
+				<div class="col-md-2">
+					<div class="button text-center" onclick="createNew()">Save</div>
 				</div>
 			</div>
 			<form action="#0">
