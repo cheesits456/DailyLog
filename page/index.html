@@ -38,6 +38,18 @@
 
 		<main id="main" class="margin-top-large"></main>
 
+		<!-- Saved dialog -->
+		<div class="modal fade" id="saved-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-body">Entry saved successfully</div>
+					<div class="modal-footer">
+						<div class="edit-button hover-pointer" onclick="$('#saved-modal').modal('toggle')">Okay</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<script src="libs/js/jquery.js" onload="window.$ = window.jQuery = module.exports"></script>
 		<script src="libs/js/bootstrap.min.js"></script>
 		<script src="functions/page-functions.js"></script>
