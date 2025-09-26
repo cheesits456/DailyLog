@@ -44,8 +44,8 @@ function showHome() {
 
 
 	let mainHtml = `
-	<div class="container">
-	<div class="row">
+		<div class="container">
+			<div class="row">
 	`;
 
 	for (const entry of entries) {
