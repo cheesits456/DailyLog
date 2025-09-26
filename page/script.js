@@ -138,6 +138,22 @@ function showNew() {
 
 function createNew() {
 	const entryDate = new Date();
+	const ids = [
+		"entry-title",
+		"entry-content"
+	];
+
+	let skip = false;
+	for (const id of ids) {
+		let element = document.getElementById(id);
+		if (!element.value) {
+			element.classList.add("input-red");
+			skip = true;
+		} else {
+			element.classList.remove("input-red");
+		};
+	};
+	if (skip) return;
 
 	// Build date variables
 	const year = `${entryDate.getFullYear()}`;
