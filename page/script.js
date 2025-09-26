@@ -36,12 +36,12 @@ function showHome() {
 	// Entries array is built in alphabetical order so oldest entries will be first, reverse array so newest comes first
 	entries.reverse();
 
-	
+
 	let mainHtml = `
 	<div class="container">
 	<div class="row">
 	`;
-	
+
 	for (const entry of entries) {
 		let substring = `${entry.content}`.replace(/<br>/g, " ").substring(0, 114);
 		mainHtml += `
@@ -71,7 +71,7 @@ function showHome() {
 function showNew() {
 	page = "new";
 	document.getElementById("nav-button-home").classList.remove("active");
-	
+
 	document.getElementById("nav-button-new").classList.add("active");
 
 	document.getElementById("main").innerHTML = `
