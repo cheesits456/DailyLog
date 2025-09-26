@@ -1,18 +1,12 @@
 <div class="container margin-top">
 	<div class="row">
-		<div class="col-md-10">
-			<form>
-				<input id="entry-title" class="form-control" type="text" placeholder="Title">
-			</form>
-		</div>
-		<div class="col-md-2">
-			<div class="button text-center">Save</div>
+		<div class="col-md-12">
+			<h1>${entryData.title}</h1>
 		</div>
 	</div>
-	<form action="#0">
-		<div class="grow-wrap">
-			<textarea id="entry-content" class="form-control margin-top" placeholder="Start typing here..."
-				onInput="this.parentNode.dataset.replicatedValue = this.value"></textarea>
+	<div class="row">
+		<div class="col-md-12">
+			<p>${entryData.content}</p>
 		</div>
-	</form>
+	</div>
 </div>

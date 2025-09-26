@@ -17,7 +17,32 @@ showHome();
 
 
 function showEntry(date) {
-	console.log(date);
+	document.getElementById("nav-button-home").classList.remove("active");
+
+	const year = date.split("/")[0];
+	const month = date.split("/")[1];
+	const day = date.split("/")[2];
+	const entry = date.split("/")[3];
+	const entryData = JSON.parse(fs.readFileSync(path.join(entryDirectory, year, month, day, entry)));
+
+	const mainHtml = `
+	<div class="container margin-top">
+	<div class="row">
+		<div class="col-md-12">
+			<h1>${entryData.title}</h1>
+			<h6>${entryData.date}</h6>
+		</div>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-md-12">
+			<p>${entryData.content}</p>
+		</div>
+	</div>
+</div>
+	`;
+
+	document.getElementById("main").innerHTML = mainHtml;
 }
 
 
@@ -35,7 +60,7 @@ function showHome() {
 			for (const day of fs.readdirSync(path.join(entryDirectory, year, month).replace(/\\/g, "\\\\"))) {
 				for (const entry of fs.readdirSync(path.join(entryDirectory, year, month, day).replace(/\\/g, "\\\\"))) {
 					let data = JSON.parse(fs.readFileSync(path.join(entryDirectory, year, month, day, entry).replace(/\\/g, "\\\\")));
-					data.path = `${year}-${month}-${day}-${entry}`;
+					data.path = `${year}/${month}/${day}/${entry}`;
 					entries.push(data);
 				};
 			};
@@ -53,8 +78,8 @@ function showHome() {
 	for (const entry of entries) {
 		let substring = `${entry.content}`.replace(/<br>/g, " ").substring(0, 114);
 		mainHtml += `
-			<div class="col-md-4">
-				<div class="card margin-top hover-pointer" onclick="showEntry('${entry.path}')">
+			<div class="col-md-4 margin-bottom">
+				<div class="card hover-pointer" onclick="showEntry('${entry.path}')">
 					<div class="card-header">
 						<h5>${entry.title}</h5>
 					</div>
@@ -96,10 +121,16 @@ function showNew() {
 			</div>
 			<form action="#0">
 				<div class="grow-wrap">
-					<textarea id="entry-content" class="form-control margin-top" placeholder="Start typing here..."
-						onInput="this.parentNode.dataset.replicatedValue = this.value"></textarea>
+					<textarea id="entry-content" class="form-control margin-top" placeholder="Start typing here..."></textarea>
 				</div>
 			</form>
 		</div>
 	`;
 };
+
+
+
+function createNew() {
+
+
+}
