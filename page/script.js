@@ -94,5 +94,4 @@ function showNew() {
 			</form>
 		</div>
 	`;
-
 };
