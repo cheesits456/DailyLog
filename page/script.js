@@ -76,14 +76,14 @@ function showHome() {
 	`;
 
 	for (const entry of entries) {
-		let substring = `${entry.content}`.replace(/<br>/g, " ").substring(0, 114);
+		let substring = `${entry.content}`.replace(/<br>/g, " ").substring(0, 104);
 		mainHtml += `
 			<div class="col-md-4 margin-bottom">
 				<div class="card hover-pointer" onclick="showEntry('${entry.path}')">
 					<div class="card-header">
 						<h5>${entry.title}</h5>
 					</div>
-					<div class="card-body">${substring}${entry.content.length > 114 ? " . . ." : ""}</div>
+					<div class="card-body">${substring}${entry.content.length > 104 ? " . . ." : ""}</div>
 					<div class="card-footer text-body-secondary">${entry.date}</div>
 				</div>
 			</div>
