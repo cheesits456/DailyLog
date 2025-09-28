@@ -18,6 +18,10 @@ showHome();
 
 function showEntry(date) {
 	document.getElementById("nav-button-home").classList.remove("active");
+	window.scrollTo({
+		top: 0,
+		behavior: "instant",
+	});
 
 	const year = date.split("/")[0];
 	const month = date.split("/")[1];
@@ -52,6 +56,11 @@ function showHome() {
 	document.getElementById("nav-button-new").classList.remove("active");
 
 	document.getElementById("nav-button-home").classList.add("active");
+	window.scrollTo({
+		top: 0,
+		left: 0,
+		behavior: "instant",
+	});
 
 	// Loop through all subdirectories of main entry directory to build an array of entries
 	let entries = [];
@@ -106,6 +115,11 @@ function showNew() {
 	document.getElementById("nav-button-home").classList.remove("active");
 
 	document.getElementById("nav-button-new").classList.add("active");
+	window.scrollTo({
+		top: 0,
+		left: 0,
+		behavior: "instant",
+	});
 
 	document.getElementById("main").innerHTML = `
 		<div class="container margin-top">
