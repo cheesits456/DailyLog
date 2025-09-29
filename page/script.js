@@ -48,7 +48,7 @@ function showEntry(date) {
 	`;
 
 	document.getElementById("main").innerHTML = mainHtml;
-}
+};
 
 
 
