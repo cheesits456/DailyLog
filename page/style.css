@@ -53,7 +53,8 @@
 }
 
 .card:hover {
-	background-color: #171b20;
+	background-color: #00000544;
+	/* background-color: #171b20; */
 }
 
 textarea {
