@@ -15,6 +15,86 @@ showHome();
 
 
 
+function createNew() {
+	const ids = [
+		"entry-title",
+		"entry-content"
+	];
+
+	let skip = false;
+	for (const id of ids) {
+		let element = document.getElementById(id);
+		if (!element.value) {
+			element.classList.add("input-red");
+			skip = true;
+		} else {
+			element.classList.remove("input-red");
+		};
+	};
+	if (skip) return;
+
+	const date = document.getElementById("entry-date").value;
+	const time = document.getElementById("entry-time").value;
+	const entryDate = date ? new Date(`${date} ${time}`) : new Date();
+
+	// Build date variables
+	const year = `${entryDate.getFullYear()}`;
+
+	const monthNumber = `${entryDate.getMonth() + 1}`;
+	let month = monthNumber;
+	if (monthNumber.length === 1) month = `0${monthNumber}`;
+	let monthString;
+	switch (month) {
+		case "01": monthString = "Jan"; break;
+		case "02": monthString = "Feb"; break;
+		case "03": monthString = "Mar"; break;
+		case "04": monthString = "Apr"; break;
+		case "05": monthString = "May"; break;
+		case "06": monthString = "Jun"; break;
+		case "07": monthString = "Jul"; break;
+		case "08": monthString = "Aug"; break;
+		case "09": monthString = "Sep"; break;
+		case "10": monthString = "Oct"; break;
+		case "11": monthString = "Nov"; break;
+		case "12": monthString = "Dec"; break;
+	};
+
+	const dayNumber = `${entryDate.getDate()}`;
+	let day = dayNumber;
+	if (dayNumber.length === 1) day = `0${dayNumber}`;
+
+	const hourNumber = `${entryDate.getHours()}`;
+	let hour = hourNumber;
+	if (hourNumber.length === 1) hour = `0${hourNumber}`;
+
+	const minuteNumber = `${entryDate.getMinutes()}`;
+	let minute = minuteNumber;
+	if (minuteNumber.length === 1) minute = `0${minuteNumber}`;
+
+	const secondNumber = `${entryDate.getSeconds()}`;
+	let second = secondNumber;
+	if (secondNumber.length === 1) second = `0${secondNumber}`;
+
+	// Build entry data object
+	const data = {
+		date: `${monthString} ${dayNumber}, ${year} at ${hour}:${minute}:${second}`,
+		title: document.getElementById("entry-title").value.trim(),
+		content: document.getElementById("entry-content").value.trim().replace(/\n/g, "<br>")
+	};
+
+	// Set filepath variables and save file
+	const filePath = path.join(entryDirectory, year, month, day);
+	const fileName = `${hour}:${minute}:${second}.entry`;
+
+	fs.mkdirSync(filePath, { recursive: true });
+	fs.writeFileSync(path.join(filePath, fileName), JSON.stringify(data, null, "\t"));
+
+	// Show "saved" dialog and go back to main screen
+	$("#saved-modal").modal("toggle");
+	showHome();
+};
+
+
 
 function showAll() {
 	page = "all";
@@ -203,85 +283,4 @@ function showNew() {
 			</form>
 		</div>
 	`;
-};
-
-
-
-function createNew() {
-	const ids = [
-		"entry-title",
-		"entry-content"
-	];
-
-	let skip = false;
-	for (const id of ids) {
-		let element = document.getElementById(id);
-		if (!element.value) {
-			element.classList.add("input-red");
-			skip = true;
-		} else {
-			element.classList.remove("input-red");
-		};
-	};
-	if (skip) return;
-
-	const date = document.getElementById("entry-date").value;
-	const time = document.getElementById("entry-time").value;
-	const entryDate = date ? new Date(`${date} ${time}`) : new Date();
-
-	// Build date variables
-	const year = `${entryDate.getFullYear()}`;
-
-	const monthNumber = `${entryDate.getMonth() + 1}`;
-	let month = monthNumber;
-	if (monthNumber.length === 1) month = `0${monthNumber}`;
-	let monthString;
-	switch (month) {
-		case "01": monthString = "Jan"; break;
-		case "02": monthString = "Feb"; break;
-		case "03": monthString = "Mar"; break;
-		case "04": monthString = "Apr"; break;
-		case "05": monthString = "May"; break;
-		case "06": monthString = "Jun"; break;
-		case "07": monthString = "Jul"; break;
-		case "08": monthString = "Aug"; break;
-		case "09": monthString = "Sep"; break;
-		case "10": monthString = "Oct"; break;
-		case "11": monthString = "Nov"; break;
-		case "12": monthString = "Dec"; break;
-	};
-
-	const dayNumber = `${entryDate.getDate()}`;
-	let day = dayNumber;
-	if (dayNumber.length === 1) day = `0${dayNumber}`;
-
-	const hourNumber = `${entryDate.getHours()}`;
-	let hour = hourNumber;
-	if (hourNumber.length === 1) hour = `0${hourNumber}`;
-
-	const minuteNumber = `${entryDate.getMinutes()}`;
-	let minute = minuteNumber;
-	if (minuteNumber.length === 1) minute = `0${minuteNumber}`;
-
-	const secondNumber = `${entryDate.getSeconds()}`;
-	let second = secondNumber;
-	if (secondNumber.length === 1) second = `0${secondNumber}`;
-
-	// Build entry data object
-	const data = {
-		date: `${monthString} ${dayNumber}, ${year} at ${hour}:${minute}:${second}`,
-		title: document.getElementById("entry-title").value.trim(),
-		content: document.getElementById("entry-content").value.trim().replace(/\n/g, "<br>")
-	};
-
-	// Set filepath variables and save file
-	const filePath = path.join(entryDirectory, year, month, day);
-	const fileName = `${hour}:${minute}:${second}.entry`;
-
-	fs.mkdirSync(filePath, { recursive: true });
-	fs.writeFileSync(path.join(filePath, fileName), JSON.stringify(data, null, "\t"));
-
-	// Show "saved" dialog and go back to main screen
-	$("#saved-modal").modal("toggle");
-	showHome();
 };
