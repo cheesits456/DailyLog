@@ -143,6 +143,7 @@ function showAll() {
 
 
 function showEntry(date) {
+function showEntry(entryPath) {
 	page = "entry";
 	document.getElementById("nav-button-all").classList.remove("active");
 	document.getElementById("nav-button-home").classList.remove("active");
@@ -153,10 +154,12 @@ function showEntry(date) {
 		behavior: "instant",
 	});
 
-	const year = date.split("/")[0];
-	const month = date.split("/")[1];
-	const day = date.split("/")[2];
-	const entry = date.split("/")[3];
+	const splitPath = entryPath.split("/");
+
+	const year = splitPath[0];
+	const month = splitPath[1];
+	const day = splitPath[2];
+	const entry = splitPath[3];
 	const entryData = JSON.parse(fs.readFileSync(path.join(entryDirectory, year, month, day, entry)));
 
 	const mainHtml = `
