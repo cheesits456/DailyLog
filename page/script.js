@@ -165,7 +165,7 @@ function showEntry(entryPath) {
 		<div class="container margin-top">
 			<div class="row">
 				<div class="col-md-12">
-					<h1>${entryData.title}</h1>
+					<h1 class="entry-title">${entryData.title} <span class="button edit-button" onclick="editEntry('${entryPath}')">Edit</span></h1>
 					<h6>${entryData.date}</h6>
 				</div>
 			</div>

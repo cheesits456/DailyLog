@@ -38,10 +38,20 @@
 	border-radius: 0.5rem;
 	background-color: var(--bs-primary);
 	padding: 0.5rem;
+	text-shadow: 0 0 5px black;
 }
 
 .button:hover {
 	cursor: pointer;
+	background-color: var(--bs-primary-border-subtle);
+}
+
+.edit-button {
+	position: absolute;
+	right: 0;
+	margin-right: 38px;
+	font-size: 14pt;
+	padding: 0.75rem;
 }
 
 .card-header h5 {
@@ -66,6 +76,10 @@ textarea {
 .input-red {
 	border-color: red;
 	box-shadow: 0 0 0 .25rem rgba(255, 0, 0, .25)
+}
+
+.entry-title {
+	width: 100%;
 }
 
 ::-webkit-scrollbar {
