@@ -142,7 +142,6 @@ function showAll() {
 
 
 
-function showEntry(date) {
 function showEntry(entryPath) {
 	page = "entry";
 	document.getElementById("nav-button-all").classList.remove("active");
