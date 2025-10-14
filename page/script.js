@@ -96,6 +96,20 @@ function createNew() {
 
 
 
+function editEntry(entryPath) {
+	const splitPath = entryPath.split("/");
+
+	const year = splitPath[0];
+	const month = splitPath[1];
+	const day = splitPath[2];
+	const entry = splitPath[3];
+	const entryData = JSON.parse(fs.readFileSync(path.join(entryDirectory, year, month, day, entry)));
+
+	showNew(entryData);
+};
+
+
+
 function showAll() {
 	page = "all";
 	document.getElementById("nav-button-home").classList.remove("active");
@@ -243,31 +257,60 @@ function showHome() {
 
 
 
-function showNew() {
+function showNew(entryData) {
 	page = "new";
 	document.getElementById("nav-button-all").classList.remove("active");
 	document.getElementById("nav-button-home").classList.remove("active");
 
-	document.getElementById("nav-button-new").classList.add("active");
+	if (!entryData) document.getElementById("nav-button-new").classList.add("active");
 	window.scrollTo({
 		top: 0,
 		left: 0,
 		behavior: "instant",
 	});
 
+	let entryDate = "";
+	let entryTime = "";
+	if (entryData) {
+		let entryMonthText = entryData.date.split(" ")[0];
+		let entryMonth = "";
+		switch (entryMonthText) {
+			case "Jan": entryMonth = "01"; break;
+			case "Feb": entryMonth = "02"; break;
+			case "Mar": entryMonth = "03"; break;
+			case "Apr": entryMonth = "04"; break;
+			case "May": entryMonth = "05"; break;
+			case "Jun": entryMonth = "06"; break;
+			case "Jul": entryMonth = "07"; break;
+			case "Aug": entryMonth = "08"; break;
+			case "Sep": entryMonth = "09"; break;
+			case "Oct": entryMonth = "10"; break;
+			case "Nov": entryMonth = "11"; break;
+			case "Dec": entryMonth = "12"; break;
+		};
+		let entryDay = entryData.date.split(" ")[1].split(",")[0];
+		if (entryDay.length === 1) entryDay = `0${entryDay}`;
+		let entryYear = entryData.date.split(" ")[2];
+		entryDate = `${entryYear}-${entryMonth}-${entryDay}`;
+
+		let entryHour = entryData.date.split(" ")[4].split(":")[0];
+		let entryMinute = entryData.date.split(" ")[4].split(":")[1];
+		entryTime = `${entryHour}:${entryMinute}`;
+	}
+
 	document.getElementById("main").innerHTML = `
 		<div class="container margin-top">
 			<div class="row">
 				<div class="col-md-6">
-					<input id="entry-title" class="form-control" type="text" placeholder="Title">
+					<input id="entry-title" class="form-control" type="text" placeholder="Title"${entryData ? ` value="${entryData.title}"` : ""}>
 				</div>
 				<div class="col-md-4">
 					<div class="row">
 						<div class="col">
-							<input id="entry-date" class="form-control" type="date">
+							<input id="entry-date" class="form-control" type="date"${entryData ? ` value="${entryDate}" disabled` : ""}>
 						</div>
 						<div class="col">
-							<input id="entry-time" class="form-control" type="time">
+							<input id="entry-time" class="form-control" type="time"${entryData ? ` value="${entryTime}" disabled` : ""}>
 						</div>
 					</div>
 					<div class="row">
@@ -280,7 +323,7 @@ function showNew() {
 			</div>
 			<form>
 				<div class="grow-wrap">
-					<textarea id="entry-content" class="form-control margin-top" placeholder="Start typing here..."></textarea>
+					<textarea id="entry-content" class="form-control margin-top" placeholder="Start typing here...">${entryData ? entryData.content.replace(/<br>/g, "\n") : ""}</textarea>
 				</div>
 			</form>
 		</div>
