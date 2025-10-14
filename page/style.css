@@ -59,6 +59,10 @@
 	padding-left: 1.5rem;
 }
 
+.modal-footer {
+	border-top: none;
+}
+
 .card-header h5 {
 	margin-top: 0.5rem
 }
